@@ -1,0 +1,45 @@
+﻿@page
+@model RemindMe.Pages.Calendar.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Calendar</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Calendar.ID" />
+            <div class="form-group">
+                <label asp-for="Calendar.DayOfWeek" class="control-label"></label>
+                <input asp-for="Calendar.DayOfWeek" class="form-control" />
+                <span asp-validation-for="Calendar.DayOfWeek" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Calendar.Year" class="control-label"></label>
+                <input asp-for="Calendar.Year" class="form-control" />
+                <span asp-validation-for="Calendar.Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Calendar.Month" class="control-label"></label>
+                <input asp-for="Calendar.Month" class="form-control" />
+                <span asp-validation-for="Calendar.Month" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
