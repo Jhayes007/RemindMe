@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RemindMe.Models;
 
 namespace RemindMe.Pages.CreateReminder
 {
     public class CreateModel : PageModel
     {
-        private readonly RemindMe.Data.RemindMeContext _context;
+        private readonly Data.RemindMeContext _context;
 
-        public CreateModel(RemindMe.Data.RemindMeContext context)
+        public CreateModel(Data.RemindMeContext context)
         {
             _context = context;
         }
@@ -16,7 +15,7 @@ namespace RemindMe.Pages.CreateReminder
         public IActionResult OnGet()
         {
 
-            Reminder = new Reminders { Description = "Take out the trash", Name = "Trash reminder", Frequency = 1, Date = DateTime.Today, Location = "Home", Priority = "High", Time = TimeSpan.MinValue };
+            Reminder = new Models.Reminders { };
 
             return Page();
 
@@ -24,20 +23,21 @@ namespace RemindMe.Pages.CreateReminder
 
 
         [BindProperty]
-        public Reminders Reminder { get; set; }
+        public Models.Reminders Reminder { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            Reminder = new Reminders { Description = "Take out the trash", Name = "Trash reminder", Frequency = 1, Date = DateTime.Today, Location = "Home", Priority = "High", Time = TimeSpan.MinValue };
             _context.Reminders.Add(Reminder);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Index");
+
         }
     }
 }

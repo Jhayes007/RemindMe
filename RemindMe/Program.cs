@@ -22,13 +22,13 @@ else
     app.UseDeveloperExceptionPage();
 }
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var services = scope.ServiceProvider;
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
 
-//    var context = services.GetRequiredService<RemindMeContext>();
-//    context.Database.EnsureCreated();
-//}
+    var context = services.GetRequiredService<RemindMeContext>();
+    //context.Database.EnsureCreated();
+}
 
 
 // Configure the HTTP request pipeline.

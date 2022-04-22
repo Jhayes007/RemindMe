@@ -1,188 +1,49 @@
 ﻿@page
-@model RemindMe.Pages.EditReminders
+@model RemindMe.Pages.EditReminder.EditModel
 @{
-    ViewData["Title"] = "Reminders";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Create a Reminder below:</h1> 
+<h1>Edit</h1>
 
-<br /><br />
-
-<form id="search" name="search" class="bs-example bs-example-form" action="" role="form" method="get" target="_blank">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-6">
-                <div class="input-group">
-                    <input id="searchparameter" type="text" class="form-control" placeholder="Enter Reminder" name="q" type="text" maxlength="255" value="" />
-                    <div class="input-group-btn">
-                        <button tabindex="-1" class="btn btn-outline-secondary" type="submit">Submit</button>
-                        <button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="#">Edit</a></li>
-                            <li><a href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
+<h4>Reminder</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Reminder.Name" />
+            <div class="form-group">
+                <label asp-for="Reminder.Name" class="control-label"></label>
+                <input asp-for="Reminder.Name" class="form-control" />
+                <span asp-validation-for="Reminder.Name" class="text-danger"></span>
             </div>
-        </div>
-    </div>
-</form>
-<p>
-
-</p>
-
-<form id="search" name="search" class="bs-example bs-example-form" action="" role="form" method="get" target="_blank">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-6">
-                <div class="input-group">
-                    <input id="searchparameter" type="text" class="form-control" placeholder="Enter Reminder" name="q" type="text" maxlength="255" value="" />
-                    <div class="input-group-btn">
-                        <button tabindex="-1" class="btn btn-outline-secondary" type="submit">Submit</button>
-                        <button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="#">Edit</a></li>
-                            <li><a href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label asp-for="Reminder.Description" class="control-label"></label>
+                <input asp-for="Reminder.Description" class="form-control" />
+                <span asp-validation-for="Reminder.Description" class="text-danger"></span>
             </div>
-        </div>
-    </div>
-</form>
-<p>
-
-</p>
-
-<form id="search" name="search" class="bs-example bs-example-form" action="" role="form" method="get" target="_blank">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-6">
-                <div class="input-group">
-                    <input id="searchparameter" type="text" class="form-control" placeholder="Enter Reminder" name="q" type="text" maxlength="255" value="" />
-                    <div class="input-group-btn">
-                        <button tabindex="-1" class="btn btn-outline-secondary" type="submit">Submit</button>
-                        <button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="#">Edit</a></li>
-                            <li><a href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label asp-for="Reminder.Frequency" class="control-label"></label>
+                <input asp-for="Reminder.Frequency" class="form-control" />
+                <span asp-validation-for="Reminder.Frequency" class="text-danger"></span>
             </div>
-        </div>
-    </div>
-</form>
-<p>
-
-</p>
-
-<form id="search" name="search" class="bs-example bs-example-form" action="" role="form" method="get" target="_blank">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-6">
-                <div class="input-group">
-                    <input id="searchparameter" type="text" class="form-control" placeholder="Enter Reminder" name="q" type="text" maxlength="255" value="" />
-                    <div class="input-group-btn">
-                        <button tabindex="-1" class="btn btn-outline-secondary" type="submit">Submit</button>
-                        <button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="#">Edit</a></li>
-                            <li><a href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label asp-for="Reminder.Time" class="control-label"></label>
+                <input asp-for="Reminder.Time" class="form-control" />
+                <span asp-validation-for="Reminder.Time" class="text-danger"></span>
             </div>
-        </div>
-    </div>
-</form>
-<p>
-
-</p>
-
-<form id="search" name="search" class="bs-example bs-example-form" action="" role="form" method="get" target="_blank">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-6">
-                <div class="input-group">
-                    <input id="searchparameter" type="text" class="form-control" placeholder="Enter Reminder" name="q" type="text" maxlength="255" value="" />
-                    <div class="input-group-btn">
-                        <button tabindex="-1" class="btn btn-outline-secondary" type="submit">Submit</button>
-                        <button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="#">Edit</a></li>
-                            <li><a href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
-        </div>
+        </form>
     </div>
-</form>
-<p>
+</div>
 
-</p>
+<div>
+    <a asp-page="/Index">Back to Home</a>
+</div>
 
-<form id="search" name="search" class="bs-example bs-example-form" action="" role="form" method="get" target="_blank">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-6">
-                <div class="input-group">
-                    <input id="searchparameter" type="text" class="form-control" placeholder="Enter Reminder" name="q" type="text" maxlength="255" value="" />
-                    <div class="input-group-btn">
-                        <button tabindex="-1" class="btn btn-outline-secondary" type="submit">Submit</button>
-                        <button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="#">Edit</a></li>
-                            <li><a href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-<p>
-
-</p>
-
-<form id="search" name="search" class="bs-example bs-example-form" action="" role="form" method="get" target="_blank">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-6">
-                <div class="input-group">
-                    <input id="searchparameter" type="text" class="form-control" placeholder="Enter Reminder" name="q" type="text" maxlength="255" value="" />
-                    <div class="input-group-btn">
-                        <button tabindex="-1" class="btn btn-outline-secondary" type="submit">Submit</button>
-                        <button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="#">Edit</a></li>
-                            <li><a href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

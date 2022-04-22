@@ -1,0 +1,56 @@
+﻿@page
+@model RemindMe.Pages.Reminder.IndexModel
+@{
+    ViewData["Title"] = "Reminders";
+}
+
+<h1>Reminders</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Reminders[0].Name)
+            </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.Reminders[0].Description)
+            </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.Reminders[0].Frequency)
+            </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.Reminders[0].Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Reminders)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Frequency)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    <a asp-page="/Reminder/Edit">Edit</a> |
+                    <a asp-page="/Reminder/Details">Details</a> |
+                    <a asp-page="/Reminder/Delete">Delete</a> 
+                </td>
+            </tr>
+        }
+    </tbody>
+          <a asp-page="/Index">Back to Home</a>
+</table>
+

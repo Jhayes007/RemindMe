@@ -1,4 +1,7 @@
-﻿namespace RemindMe
+﻿using Microsoft.EntityFrameworkCore;
+using RemindMe.Data;
+
+namespace RemindMe
 {
     public class Startup
     {
@@ -10,6 +13,11 @@
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext<RemindMeContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("RemindMeContext")));
+        }
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,6 +40,7 @@
             app.UseRouting();
 
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

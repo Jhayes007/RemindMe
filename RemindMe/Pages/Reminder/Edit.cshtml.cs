@@ -1,61 +1,62 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RemindMe.Data;
 
-namespace RemindMe.Pages
+namespace RemindMe.Pages.EditReminder
 {
-    public class EditReminders : PageModel
+    public class EditModel : PageModel
     {
-        public void onGet()
+        private readonly RemindMeContext _context;
+
+        public EditModel(RemindMeContext context)
         {
+            _context = context;
+        }
+
+
+        [BindProperty]
+        public Models.Reminders Reminder { get; set; }
+
+
+        public async Task<IActionResult> OnGetAsync(string? name)
+        {
+            if (name == null)
+            {
+                return NotFound();
+            }
+
+            Reminder = await _context.Reminders.FindAsync(name);
+
+            if (Reminder == null)
+            {
+                return NotFound();
+            }
+            return Page();
 
         }
 
-        [BindProperty]
-        public RemindMeDB.Reminders Description { get; set; }
-        public RemindMeDB.Reminders Frequency { get; set; }
-        public RemindMeDB.Reminders ReminderName { get; set; }
+        public async Task<IActionResult> OnPostAsync(string name)
+        {
+            var reminderToUpdate = await _context.Reminders.FindAsync(name);
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
-        //public async Task<IActionResult> OnPostAsync()
-        //{
-        //    var emptyReminder = new Reminder();
+            if (reminderToUpdate == null)
+            {
+                return NotFound();
+            }
 
-        //    if (await TryUpdateModelAsync<Reminder>(
-        //        emptyReminder,
-        //        "reminder",
-        //        r => r.Description, r => r.Name, r => r.Frequency, r => r.))
-        //}
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return Page();
-        //    }
+            if (await TryUpdateModelAsync<Models.Reminders>(
+                reminderToUpdate,
+                "reminder",
+                s => s.Name, s => s.Description, s => s.Frequency))
+            {
+                await _context.SaveChangesAsync();
+                return RedirectToPage("/Index");
+            }
 
-        //    _context.Attach(reminder).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!CalendarExists(reminder.Date))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return RedirectToPage("./Index");
-        //}
-
-        //private bool CalendarExists(int id)
-        //{
-        //    return _context.Calendar.Any(e => e.ID == id);
-        //}
+            return Page();
+        }
     }
 }
+
+
+
