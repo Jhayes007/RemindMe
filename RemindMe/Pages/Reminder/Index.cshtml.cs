@@ -13,11 +13,11 @@ namespace RemindMe.Pages.Reminder
             _context = context;
         }
 
-        public IList<Models.Reminders> Reminders { get; set; }
+        public IList<Models.Reminder> Reminders { get; set; }
 
         public async Task OnGetAsync()
         {
-            Reminders = await _context.Reminders
+            Reminders = await _context.Reminder
                 .AsNoTracking()
                 .ToListAsync();
         }

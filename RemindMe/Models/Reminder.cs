@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RemindMe.Models
 {
-    public class Reminders
+    public class Reminder
     {
         public string Description { get; set; }
         [Key]
@@ -20,7 +20,7 @@ namespace RemindMe.Models
         public string Location { get; set; }
         public string Priority { get; set; }
 
-        public Reminders() { }
+        public Reminder() { }
 
     }
 }

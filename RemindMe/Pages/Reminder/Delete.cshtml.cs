@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RemindMe.Data;
 
-namespace RemindMe.Pages.DeleteReminder
+namespace RemindMe.Pages.Reminder
 {
     public class DeleteModel : PageModel
     {
@@ -15,36 +15,24 @@ namespace RemindMe.Pages.DeleteReminder
         }
 
         [BindProperty]
-        public Models.Reminders Reminder { get; set; }
+        public Models.Reminder Reminder { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string? name)
         {
-            //if (name == null)
-            //{
-            //    return NotFound();
-            //}
 
-            Reminder = await _context.Reminders.FirstOrDefaultAsync(m => m.Name == name);
+            Reminder = await _context.Reminder.FirstOrDefaultAsync(m => m.Name == name);
 
-            //if (Reminder == null)
-            //{
-            //    return NotFound();
-            //}
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string? name)
         {
-            //if (name == null)
-            //{
-            //    return NotFound();
-            //}
 
-            Reminder = await _context.Reminders.FindAsync(name);
+            Reminder = await _context.Reminder.FindAsync(name);
 
             if (Reminder != null)
             {
-                _context.Reminders.Remove(Reminder);
+                _context.Reminder.Remove(Reminder);
                 await _context.SaveChangesAsync();
             }
 

@@ -11,7 +11,7 @@ namespace RemindMe.Data
         }
 
         public DbSet<Calendar> Calendar { get; set; }
-        public DbSet<Reminders> Reminders { get; set; }
+        public DbSet<Reminder> Reminder { get; set; }
         public DbSet<Users> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,7 +22,7 @@ namespace RemindMe.Data
             {
                 key.ValueGenerated = Microsoft.EntityFrameworkCore.Metadata.ValueGenerated.OnAdd;
             }
-            modelBuilder.Entity<Reminders>().ToTable("Reminders");
+            modelBuilder.Entity<Reminder>().ToTable("Reminders");
             modelBuilder.Entity<Calendar>().ToTable("Calendar");
             modelBuilder.Entity<Users>().ToTable("User");
         }

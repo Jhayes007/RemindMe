@@ -1,5 +1,5 @@
 ﻿@page
-@model RemindMe.Pages.DeleteReminder.DeleteModel
+@model RemindMe.Pages.Reminder.DeleteModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -30,11 +30,24 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Reminder.Frequency)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reminder.Time)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reminder.Time)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Reminder.Priority)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Reminder.Priority)
+        </dd>
     </dl>
     
     <form method="post">
         <input type="hidden" asp-for="Reminder.Name" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="/Index">Back to Home</a>
+        <a asp-page="/Index">Back to Home</a> |
+        <a asp-page="/Reminder/Index">Back to List</a>
     </form>
 </div>

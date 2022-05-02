@@ -1,5 +1,5 @@
 ﻿@page
-@model RemindMe.Pages.EditReminder.EditModel
+@model RemindMe.Pages.Reminder.EditModel
 @{
     ViewData["Title"] = "Edit";
 }
@@ -32,6 +32,11 @@
                 <label asp-for="Reminder.Time" class="control-label"></label>
                 <input asp-for="Reminder.Time" class="form-control" />
                 <span asp-validation-for="Reminder.Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reminder.Priority" class="control-label"></label>
+                <input asp-for="Reminder.Priority" class="form-control" />
+                <span asp-validation-for="Reminder.Priority" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using RemindMe.Data;
 
-namespace RemindMe.Pages.EditReminder
+namespace RemindMe.Pages.Reminder
 {
     public class EditModel : PageModel
     {
@@ -15,45 +16,46 @@ namespace RemindMe.Pages.EditReminder
 
 
         [BindProperty]
-        public Models.Reminders Reminder { get; set; }
-
+        public Models.Reminder Reminder { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string? name)
         {
-            if (name == null)
-            {
-                return NotFound();
-            }
 
-            Reminder = await _context.Reminders.FindAsync(name);
-
-            if (Reminder == null)
-            {
-                return NotFound();
-            }
+            Reminder = await _context.Reminder.FirstOrDefaultAsync(x => x.Name == name);
             return Page();
 
         }
 
-        public async Task<IActionResult> OnPostAsync(string name)
+        public async Task<IActionResult> OnPostAsync()
         {
-            var reminderToUpdate = await _context.Reminders.FindAsync(name);
-
-            if (reminderToUpdate == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return Page();
             }
 
-            if (await TryUpdateModelAsync<Models.Reminders>(
-                reminderToUpdate,
-                "reminder",
-                s => s.Name, s => s.Description, s => s.Frequency))
+            _context.Attach(Reminder).State = EntityState.Modified;
+
+            try
             {
                 await _context.SaveChangesAsync();
-                return RedirectToPage("/Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ReminderExists(Reminder.Name))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return Page();
+            return RedirectToPage("/Index");
+        }
+        private bool ReminderExists(string name)
+        {
+            return _context.Reminder.Any(r => r.Name == name);
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RemindMe.Data;
 
-namespace RemindMe.Pages.Calendar
+namespace RemindMe.Pages.Reminder
 {
     public class DetailsModel : PageModel
     {
@@ -14,25 +13,14 @@ namespace RemindMe.Pages.Calendar
             _context = context;
         }
 
-        public Models.Reminders Reminders { get; set; }
+        public IList<Models.Reminder> Reminders { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string? name)
+        public async Task OnGetAsync()
         {
-            if (name == null)
-            {
-                return NotFound();
-            }
-
-            Reminders = await _context.Reminders
+            Reminders = await _context.Reminder
                 .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Name == name);
+                .ToListAsync();
 
-            if (Reminders == null)
-            {
-                return NotFound();
-            }
-
-            return Page();
         }
     }
 }

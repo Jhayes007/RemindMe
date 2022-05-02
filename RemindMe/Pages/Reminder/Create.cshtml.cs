@@ -15,15 +15,14 @@ namespace RemindMe.Pages.CreateReminder
         public IActionResult OnGet()
         {
 
-            Reminder = new Models.Reminders { };
+            Reminder = new Models.Reminder { };
 
             return Page();
 
         }
 
-
         [BindProperty]
-        public Models.Reminders Reminder { get; set; }
+        public Models.Reminder Reminder { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -33,7 +32,7 @@ namespace RemindMe.Pages.CreateReminder
                 return Page();
             }
 
-            _context.Reminders.Add(Reminder);
+            _context.Reminder.Add(Reminder);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("/Index");
